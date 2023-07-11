@@ -49,7 +49,7 @@ def going_side(normal, limit=0.5):
 """
 
 
-def create_text_object(text, offset=0.02, extrude=0.0, bevel_res=3.0, bevel_depth=0.008, fill_mode="NONE", y_offset=0):
+def create_text_object(text, offset=0.02, extrude=0.0, bevel_res=3, bevel_depth=0.008, fill_mode="NONE", y_offset=0):
     selected_objects = bpy.context.selected_objects
 
     for obj in selected_objects:
