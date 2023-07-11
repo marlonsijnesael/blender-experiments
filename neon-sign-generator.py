@@ -174,19 +174,25 @@ def create_chars(text, color):
 def connect_chars(chars):
     for count, value in enumerate(chars):
         if count + 1 < len(chars):
+            # get random points for connecting two characters
             p1 = random.choice(chars[count].data.vertices)
             p2 = random.choice(chars[count + 1].data.vertices)
+
+            # convert points to vectors
             v1 = Vector((p1.co[0], p1.co[1], -0.15))
             v2 = Vector((p2.co[0], p2.co[1], -0.15))
 
+            # get the world position of the points
             pv1 = chars[count].matrix_world @ v1
             pv2 = chars[count + 1].matrix_world @ v2
 
+            # create the connector sockets and connect them with a Bezier curve
             create_connector(pv1)
             create_connector(pv2)
 
             curve = add_bezier(pv1, pv2)
             bpy.context.collection.objects.link(curve)
+
             add_material(curve, color=(0.1, 0.1, 0.1, 1),
                          emission=(0, 0, 0, 0), name="curve")
 
